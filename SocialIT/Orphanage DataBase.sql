@@ -60,6 +60,7 @@ CREATE TABLE users (
   username VARCHAR(255) NOT NULL,
   first_name VARCHAR(255) DEFAULT NULL,
   last_name VARCHAR(255) DEFAULT NULL,
+  email VARCHAR(255) NOT NULL,
   `password` VARCHAR(255) DEFAULT NULL,
   phone_number VARCHAR(255) DEFAULT NULL,
   profile_picture VARCHAR(255) DEFAULT NULL,
