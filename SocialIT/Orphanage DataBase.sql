@@ -22,15 +22,15 @@ USE orphanage;
 --
 -- Definition for table campaign
 --
-DROP TABLE IF EXISTS campaign;
-CREATE TABLE campaign (
-  id INT(11) NOT NULL AUTO_INCREMENT,
-  organizer VARCHAR(255) DEFAULT NULL,
+DROP TABLE IF EXISTS `campaign`;
+CREATE TABLE `campaign` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(255) DEFAULT NULL,
+  `organizer` VARCHAR(255) DEFAULT NULL,
   `date` TIME DEFAULT NULL,
-  name VARCHAR(255) DEFAULT NULL,
-  details TEXT DEFAULT NULL,
-  results TEXT DEFAULT NULL,
-  PRIMARY KEY (id)
+  `details` TEXT DEFAULT NULL,
+  `results` TEXT DEFAULT NULL,
+  PRIMARY KEY (`id`)
 )
 ENGINE = INNODB
 AUTO_INCREMENT = 1
@@ -40,11 +40,11 @@ COLLATE utf8_general_ci;
 --
 -- Definition for table location
 --
-DROP TABLE IF EXISTS location;
-CREATE TABLE location (
-  id INT(11) NOT NULL AUTO_INCREMENT,
-  location VARCHAR(255) DEFAULT NULL,
-  PRIMARY KEY (id)
+DROP TABLE IF EXISTS `location`;
+CREATE TABLE `location` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `location` VARCHAR(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 )
 ENGINE = INNODB
 AUTO_INCREMENT = 1
@@ -52,19 +52,19 @@ CHARACTER SET utf8
 COLLATE utf8_general_ci;
 
 --
--- Definition for table users
+-- Definition for table user
 --
-DROP TABLE IF EXISTS users;
-CREATE TABLE users (
-  id INT(11) NOT NULL AUTO_INCREMENT,
-  username VARCHAR(255) NOT NULL,
-  first_name VARCHAR(255) DEFAULT NULL,
-  last_name VARCHAR(255) DEFAULT NULL,
-  email VARCHAR(255) NOT NULL,
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(255) NOT NULL,
+  `first_name` VARCHAR(255) DEFAULT NULL,
+  `last_name` VARCHAR(255) DEFAULT NULL,
+  `email` VARCHAR(255) NOT NULL,
   `password` VARCHAR(255) DEFAULT NULL,
-  phone_number VARCHAR(255) DEFAULT NULL,
-  profile_picture VARCHAR(255) DEFAULT NULL,
-  PRIMARY KEY (id)
+  `phone_number` VARCHAR(255) DEFAULT NULL,
+  `profile_picture` VARCHAR(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 )
 ENGINE = INNODB
 AUTO_INCREMENT = 1
@@ -74,17 +74,17 @@ COLLATE utf8_general_ci;
 --
 -- Definition for table orphanage
 --
-DROP TABLE IF EXISTS orphanage;
-CREATE TABLE orphanage (
-  id INT(11) NOT NULL AUTO_INCREMENT,
-  name VARCHAR(255) NOT NULL,
-  details VARCHAR(255) DEFAULT NULL,
-  location_id INT(11) NOT NULL,
-  address VARCHAR(255) DEFAULT NULL,
-  profile_image VARCHAR(255) DEFAULT NULL,
+DROP TABLE IF EXISTS `orphanage`;
+CREATE TABLE `orphanage` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(255) NOT NULL,
+  `details` VARCHAR(255) DEFAULT NULL,
+  `address` VARCHAR(255) DEFAULT NULL,
+  `profile_image` VARCHAR(255) DEFAULT NULL,
+  `location_id` INT(11) NOT NULL,
   PRIMARY KEY (id),
-  CONSTRAINT orphanage_location FOREIGN KEY (location_id)
-    REFERENCES location(id) ON DELETE RESTRICT ON UPDATE RESTRICT
+  CONSTRAINT orphanage_location FOREIGN KEY (`location_id`)
+    REFERENCES location(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 )
 ENGINE = INNODB
 AUTO_INCREMENT = 1
@@ -94,16 +94,16 @@ COLLATE utf8_general_ci;
 --
 -- Definition for table activities
 --
-DROP TABLE IF EXISTS activities;
-CREATE TABLE activities (
-  id INT(11) NOT NULL AUTO_INCREMENT,
-  name VARCHAR(255) DEFAULT NULL,
-  description TEXT DEFAULT NULL,
-  picture_link VARCHAR(255) DEFAULT NULL,
-  orphanage_id INT(255) DEFAULT NULL,
-  PRIMARY KEY (id),
-  CONSTRAINT activitie_orphanage FOREIGN KEY (orphanage_id)
-    REFERENCES orphanage(id) ON DELETE RESTRICT ON UPDATE RESTRICT
+DROP TABLE IF EXISTS `activities`;
+CREATE TABLE `activities` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(255) DEFAULT NULL,
+  `description` TEXT DEFAULT NULL,
+  `picture_link` VARCHAR(255) DEFAULT NULL,
+  `orphanage_id` INT(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT activitie_orphanage FOREIGN KEY (`orphanage_id`)
+    REFERENCES orphanage(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 )
 ENGINE = INNODB
 AUTO_INCREMENT = 1
@@ -113,17 +113,17 @@ COLLATE utf8_general_ci;
 --
 -- Definition for table bank
 --
-DROP TABLE IF EXISTS bank;
-CREATE TABLE bank (
-  id INT(11) NOT NULL AUTO_INCREMENT,
-  bank VARCHAR(255) DEFAULT NULL,
-  bank_account VARCHAR(255) DEFAULT NULL,
-  account VARCHAR(255) DEFAULT NULL,
-  orphanage_id INT(11) DEFAULT NULL,
-  cf VARCHAR(255) DEFAULT NULL,
-  PRIMARY KEY (id),
-  CONSTRAINT bank_orphanage FOREIGN KEY (orphanage_id)
-    REFERENCES orphanage(id) ON DELETE RESTRICT ON UPDATE RESTRICT
+DROP TABLE IF EXISTS `bank`;
+CREATE TABLE `bank` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(255) DEFAULT NULL,
+  `bank_account` VARCHAR(255) DEFAULT NULL,
+  `account` VARCHAR(255) DEFAULT NULL,
+  `cf` VARCHAR(255) DEFAULT NULL,
+  `orphanage_id` INT(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT bank_orphanage FOREIGN KEY (`orphanage_id`)
+    REFERENCES orphanage(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 )
 ENGINE = INNODB
 AUTO_INCREMENT = 1
@@ -133,17 +133,17 @@ COLLATE utf8_general_ci;
 --
 -- Definition for table child
 --
-DROP TABLE IF EXISTS child;
-CREATE TABLE child (
-  id INT(11) NOT NULL AUTO_INCREMENT,
-  first_name VARCHAR(255) DEFAULT NULL,
-  last_name VARCHAR(255) DEFAULT NULL,
-  birthday TIME DEFAULT NULL,
-  profile_picture VARCHAR(255) DEFAULT NULL,
-  orphanage_id INT(255) DEFAULT NULL,
-  PRIMARY KEY (id),
-  CONSTRAINT child_orphanage FOREIGN KEY (orphanage_id)
-    REFERENCES orphanage(id) ON DELETE RESTRICT ON UPDATE RESTRICT
+DROP TABLE IF EXISTS `child`;
+CREATE TABLE `child` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `first_name` VARCHAR(255) DEFAULT NULL,
+  `last_name` VARCHAR(255) DEFAULT NULL,
+  `birthday` TIME DEFAULT NULL,
+  `profile_picture` VARCHAR(255) DEFAULT NULL,
+  `orphanage_id` INT(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT child_orphanage FOREIGN KEY (`orphanage_id`)
+    REFERENCES orphanage(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 )
 ENGINE = INNODB
 AUTO_INCREMENT = 1
@@ -153,14 +153,14 @@ COLLATE utf8_general_ci;
 --
 -- Definition for table contact
 --
-DROP TABLE IF EXISTS contact;
-CREATE TABLE contact (
-  id INT(11) NOT NULL AUTO_INCREMENT,
-  contact VARCHAR(255) DEFAULT NULL,
-  orphanage_id INT(11) DEFAULT NULL,
-  PRIMARY KEY (id),
-  CONSTRAINT contact_orphanage FOREIGN KEY (orphanage_id)
-    REFERENCES orphanage(id) ON DELETE RESTRICT ON UPDATE RESTRICT
+DROP TABLE IF EXISTS `contact`;
+CREATE TABLE `contact` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `contact` VARCHAR(255) DEFAULT NULL,
+  `orphanage_id` INT(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT contact_orphanage FOREIGN KEY (`orphanage_id`)
+    REFERENCES orphanage(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 )
 ENGINE = INNODB
 AUTO_INCREMENT = 1
@@ -170,15 +170,15 @@ COLLATE utf8_general_ci;
 --
 -- Definition for table investment
 --
-DROP TABLE IF EXISTS investment;
-CREATE TABLE investment (
-  id INT(11) NOT NULL AUTO_INCREMENT,
-  investor VARCHAR(255) DEFAULT NULL,
-  investment_time TIME DEFAULT NULL,
-  orphanage_id INT(11) DEFAULT NULL,
-  PRIMARY KEY (id),
-  CONSTRAINT investment_orphanage FOREIGN KEY (orphanage_id)
-    REFERENCES orphanage(id) ON DELETE RESTRICT ON UPDATE RESTRICT
+DROP TABLE IF EXISTS `investment`;
+CREATE TABLE `investment` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `investor` VARCHAR(255) DEFAULT NULL,
+  `investment_time` TIME DEFAULT NULL,
+  `orphanage_id` INT(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT investment_orphanage FOREIGN KEY (`orphanage_id`)
+    REFERENCES orphanage(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 )
 ENGINE = INNODB
 AUTO_INCREMENT = 1
@@ -188,14 +188,14 @@ COLLATE utf8_general_ci;
 --
 -- Definition for table need
 --
-DROP TABLE IF EXISTS need;
-CREATE TABLE need (
-  id INT(11) NOT NULL AUTO_INCREMENT,
-  need VARCHAR(255) DEFAULT NULL,
-  orphanage_id INT(11) DEFAULT NULL,
-  PRIMARY KEY (id),
-  CONSTRAINT need_orphanage FOREIGN KEY (orphanage_id)
-    REFERENCES orphanage(id) ON DELETE RESTRICT ON UPDATE RESTRICT
+DROP TABLE IF EXISTS `need`;
+CREATE TABLE `need` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `need` TEXT DEFAULT NULL,
+  `orphanage_id` INT(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT need_orphanage FOREIGN KEY (`orphanage_id`)
+    REFERENCES orphanage(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 )
 ENGINE = INNODB
 AUTO_INCREMENT = 1
@@ -205,16 +205,16 @@ COLLATE utf8_general_ci;
 --
 -- Definition for table talent
 --
-DROP TABLE IF EXISTS talent;
-CREATE TABLE talent (
-  id INT(11) NOT NULL AUTO_INCREMENT,
-  talent VARCHAR(11) DEFAULT NULL,
-  description TEXT DEFAULT NULL,
-  pciture_link VARCHAR(255) DEFAULT NULL,
-  child_id INT(11) DEFAULT NULL,
+DROP TABLE IF EXISTS `talent`;
+CREATE TABLE `talent` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(11) DEFAULT NULL,
+  `description` TEXT DEFAULT NULL,
+  `picture_link` VARCHAR(255) DEFAULT NULL,
+  `child_id` INT(11) DEFAULT NULL,
   PRIMARY KEY (id),
-  CONSTRAINT talent_child FOREIGN KEY (child_id)
-    REFERENCES child(id) ON DELETE RESTRICT ON UPDATE RESTRICT
+  CONSTRAINT talent_child FOREIGN KEY (`child_id`)
+    REFERENCES child (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 )
 ENGINE = INNODB
 AUTO_INCREMENT = 1
@@ -242,7 +242,7 @@ COLLATE utf8_general_ci;
 -- Table scooby.orphanage does not contain any data (it is empty)
 
 -- 
--- Dumping data for table activities
+-- Dumping data for table activitie
 --
 -- Table scooby.activities does not contain any data (it is empty)
 
