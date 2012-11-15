@@ -27,7 +27,7 @@ public class Bank {
 		this.id = id;
 	}
 	
-	@Column(name = "name")
+	@Column(name = "bank")
 	public String getBankName() {
 		return bankName;
 	}
