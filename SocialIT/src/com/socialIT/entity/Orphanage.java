@@ -18,6 +18,7 @@ public class Orphanage {
 	private String profile_image;
 	private Integer locationId;
 	
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")

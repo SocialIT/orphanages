@@ -1,28 +1,16 @@
 package com.socialIT.service;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import java.util.ArrayList;
+import java.util.List;
 
-import com.socialIT.entity.Orphanage;
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+
+
 import com.socialIT.entity.User;
 
 
 public class UserService extends GenericService {
-	
-	/*public boolean isThereEmail(String email){ 
-		boolean verifyEmail=false;
-		//verifyEmail=userDao.isThereComponent("email", email);
-		return verifyEmail;	
-	}
-
-	
-	 public boolean isThereNickName(String nickname)
-	 { 
-		 boolean verifyNickName=false;
-		 //verifyNickName=userDao.isThereComponent("nickName", nickname);
-	 	return verifyNickName; 
-	 }*/
 	
 	 public void addUser(User user){
 		 EntityManager em = super.getEntityManager();
@@ -31,6 +19,14 @@ public class UserService extends GenericService {
 		 em.persist(user);
 		 em.getTransaction().commit();
 		 em.close();
+	 }
+	 
+	 public List<User> getUsers(){
+		 EntityManager em = super.getEntityManager();
+		 
+		 Query q = em.createQuery("SELECT u FROM User u");
+		 List<User> users = new ArrayList<User>(q.getResultList());
+		 return users;
 	 }
 
 }
