@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:composite="http://java.sun.com/jsf/composite"
+	  xmlns:utils="http://java.sun.com/jsf/composite/utils"	  
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+	<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>Orphanage Details</title>
+	</h:head>
+	
+	<h:body>
+	<h:form>
+	<h:outputText value="Denumire"/>
+	<h:inputText id="orphanageName" value="#{orphanageBean.name}" size="30" required="true" label="orphanageName" requiredMessage="Introduceti denumirea orfelinatului" />
+	<br/><h:message for="orphanageName" style="color:red; margin;8px"/><br/>
+	
+	<h:selectOneListbox id="select" value="#{orphanageBean.location}" required="true" label="select" requiredMessage="Selectati orasul/Raionul">
+		<f:selectItems value="#{locationBean.allLocations}" var="listItem" itemLabel="#{listItem.location}" itemValue="#{listItem.location}" />
+	</h:selectOneListbox>
+	<br/><h:message for="select" style="color:red; margin;8px"/><br/>
+	
+	<h:outputText value="Adresa"/>
+	<h:inputText id="address" value="#{orphanageBean.address}" size="100" required="true" label="address" requiredMessage="Introduceti adresa orfelinatului"/>
+	<br/><h:message for="address" style="color:red; margin;8px"/><br/>
+	
+	<h:outputText value="Descriere"/>
+	<h:inputTextarea id="details" value="#{orphanageBean.details}" required="true" label="details" requiredMessage="Introduceti descrierea orfelinatului" />
+	<br/><h:message for="details" style="color:red; margin;8px"/><br/>
+	
+	
+	<h:commandButton value="Cancel" action="#{orphanageBean.cancel}" immediate="true" />
+  	<h:commandButton value="Save" action="#{orphanageBean.add}"  />
+	</h:form>
+	</h:body>
+	
+	
+</html>
