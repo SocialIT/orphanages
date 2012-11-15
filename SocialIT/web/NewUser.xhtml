@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:composite="http://java.sun.com/jsf/composite"
+	  xmlns:utils="http://java.sun.com/jsf/composite/utils"	  
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+	<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>Some rand style</title>
+	</h:head>
+<h:body>
+<h:form>
+
+	<h:outputText label="UserName" value="Nume utilizator" />
+	<br/> 
+	<h:inputText id="username" value="#{userBean.userName}" size="20" required="true"
+				label="UserName" 
+				requiredMessage=" Introduceţi vă rog numele utilizatorului" >
+	</h:inputText>
+	<h:outputText value="*" />
+	<br/><h:message for="username" style="color:red ;margin:8px;" /> 	
+	<br/>
+	
+	
+	<h:outputText value="Nume" label="name" /> 
+	<br/> 
+	<h:inputText  id="name" value="#{userBean.name}" size="20" required="true"
+				label="name" 
+				requiredMessage=" Introduceţi vă rog numele" 
+	/>
+	<h:outputText value="*" />
+	<br/><h:message for="name" style="color:red ;margin:8px;" /> 
+	<br/>
+	
+	<h:outputText value="Prenume" label="prenume"/> <br/> 
+	<h:inputText id="prenume" value="#{userBean.surname}" size="20" required="true"
+				label="prenume" 
+				requiredMessage="Introduceţi vă rog prenumele" />
+	<h:outputText value="*" />
+	<br/>	<h:message for="prenume" style="color:red ;margin:8px;" /> 
+	<br/>
+	
+	
+	<h:outputText value="Parola" label="parola"/> 
+	<br/>
+	<h:inputSecret value="#{userBean.password}"	id="parola" size="20" required="true" label="parola" 
+				requiredMessage="Introduceţi vă rog parola"/>
+	<h:outputText value="*" />
+	<br/>	<h:message for="parola" style="color:red ;margin:8px;" /> 
+	<br/>
+	
+	
+	<h:outputText value="Confirmarea Parolei" label="parola2"/> 
+	<br/> 
+	<h:inputSecret value="#{userBean.password2}" id="parola2" size="20" required="true"	label="parola2" 
+				requiredMessage="Introduceţi vă rog parola pentru verificare" />
+	<h:outputText value="*" />
+	<br/>	<h:message for="parola2" style="color:red ;margin:8px;" />  
+	<br/>
+	
+			
+	<h:outputText value="e-mail" label="email" /> <br/> 
+	<h:inputText value="#{userBean.email}" id="email"	 size="20" required="true"
+				label="email" 
+				requiredMessage="Introduceti va rog email-ul" 
+				validatorMessage="email-ul nu este de forma nume@email.com"> 
+			<f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+	</h:inputText>
+	<h:outputText value="*" />
+	<br/>	<h:message for="email" style="color:red ;margin:8px;" />   
+	<br/>
+	
+	
+	<h:outputText value="Confirmarea e-mail" label="email2" /> <br/> <h:inputText value="#{userBean.email2}" id="email2" size="20" required="true"
+				label="email2" 
+				requiredMessage="Introduceti va rog emailul pentru verificare" />
+	<h:outputText value="*" />
+	<br/><h:message for="email2" style="color:red ;margin:8px;" />  
+	<br/>
+	<br/> 
+	
+	
+	<h:outputText value="Telefon " /> <br/> 
+	<h:inputText value="#{userBean.phone}" />
+	<br/> 
+	
+	<p:commandButton value="Create user" ajax="false" actionListener="#{userBean.submit}"/>                                            
+	 <br/>
+	<h:messages style="color:red ;margin:8px;" />
+
+	<br/>
+
+
+</h:form>
+</h:body>
+</html>

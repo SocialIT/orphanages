@@ -2,9 +2,11 @@ package com.socialIT.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -15,6 +17,7 @@ public class Activitie {
 	private String description;
 	private String pictureLink;
 	private Integer orphanageId;
+	private Orphanage orphanage;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -57,6 +60,15 @@ public class Activitie {
 	public void setOrphanageId(Integer orphanageId) {
 		this.orphanageId = orphanageId;
 	}
+	@ManyToOne(fetch = FetchType.LAZY )
+	public Orphanage getOrphanage() {
+		return orphanage;
+	}
+	public void setOrphanage(Orphanage orphanage) {
+		this.orphanage = orphanage;
+	}
+	
+	
 	
 	
 }
